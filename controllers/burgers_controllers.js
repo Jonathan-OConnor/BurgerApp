@@ -12,19 +12,20 @@ router.get('/', (req, res) => {
     });
 });
 
-router.post('/api/burgers', (req, res) => {
-    burger.create(['burger_name', 'devoured'], [req.body.name, req.body.devoured], (result) => {
+router.post('/api/add/:name', (req, res) => {
+    burger.insertOne(['burger_name', 'devoured'], [req.params.name, 0], (result) => {
         // Send back the ID of the new quote
-        res.json({ id: result.insertId });
+        console.log(result.insertId)
+        res.send({ id: result.insertId });
     });
 });
 
 router.put('/api/burgers/:id', (req, res) => {
     const condition = `id = ${req.params.id}`;
-
-    burger.update(
+    console.log(req.body)
+    burger.updateOne(
         {
-            devoured: req.body.devoured,
+            devoured: 1,
         },
         condition,
         (result) => {

@@ -1,0 +1,8 @@
+<li id="{{id}}">
+	{{burger_name}}
+	{{#unless devoured}}
+	<button class="eat-button" data-id="{{id}}" data-newdevoured="{{devoured}}" onclick="eat(event, '{{id}}', '{{burger_name}}')">
+		Eat
+	</button>
+	{{/unless}}
+</li>
